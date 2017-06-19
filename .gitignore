@@ -1,0 +1,16 @@
+.idea/*
+.DS_Store
+
+composer.phar
+
+source/vendor/*
+source/config/app.php
+source/config/constants_mail.php
+source/tmp/cache/models/*
+source/tmp/cache/persistent/*
+source/tmp/cache/views/*
+source/tmp/sessions/*
+source/logs/*
+
+
+!.gitkeep
