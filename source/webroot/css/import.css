@@ -1,0 +1,4 @@
+@import url("reset.css");
+@import url("style.css");
+@import url("font.css");
+@import url("style_sp.css") all and (max-width: 1000px) ;
