@@ -55,6 +55,9 @@ class GoodlucksTable extends Table
             ->allowEmpty('nickname');
 
         $validator
+            ->allowEmpty('title');
+
+        $validator
             ->allowEmpty('message');
 
         return $validator;
