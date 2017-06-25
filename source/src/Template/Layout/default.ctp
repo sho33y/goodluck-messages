@@ -8,6 +8,9 @@
     <meta name="format-detection" content="telephone=no">
     <!-- External files -->
     <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->script('jquery-3.1.1.min.js') ?>
+    <?= $this->Html->script('jquery.slabtext.js') ?>
+    <?= $this->Html->script('infinite-scroll.pkgd.js') ?>
     <?= $this->Html->css('import.css') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
