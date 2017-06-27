@@ -43,8 +43,20 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+Router::prefix('admin', function (RouteBuilder $routes) {
+    $routes->connect('/',
+        ['controller' => 'Admin', 'action' => 'login'],
+        ['_name' => 'admin_login']
+    );
+
+    $routes->fallbacks('DashedRoute');
+});
+
 Router::scope('/', function (RouteBuilder $routes) {
-    $routes->connect('/', ['controller' => 'Goodlucks', 'action' => 'index']);
+    $routes->connect('/',
+        ['controller' => 'Goodlucks', 'action' => 'index'],
+        ['_name' => 'home']
+    );
 
     $routes->fallbacks(DashedRoute::class);
 });
