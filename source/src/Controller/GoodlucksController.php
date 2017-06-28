@@ -38,9 +38,6 @@ class GoodlucksController extends AppController
     {
         $goodluck = $this->Goodlucks->get($id);
 
-//        debug($goodluck);
-//        exit();
-
         $this->set('goodluck', $goodluck);
         $this->set('_serialize', ['goodluck']);
     }

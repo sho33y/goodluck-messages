@@ -1,9 +1,12 @@
+<?= $this->start('script'); ?>
+<?= $this->Html->css('import'); ?>
+<?= $this->end(); ?>
 <?= $this->assign('wrapper_class', 'home blog slabtexted'); ?>
 
 <div id="wrapper">
     <!-- Header -->
     <header>
-        <h2 class="copy"><a href="http://bokukoto.com">僕らは言葉でできている&nbsp;<span class="info">|&nbsp;心に残る、珠玉のコピー・名言を紹介します。僕らは毎日、笑う。泣く。考える。喧嘩する。謝る。愛を囁く。僕らは言葉でできている。</span></a></h2>
+        <h2 class="copy"><a href="/">Good luck Manami.&nbsp;<span class="info">|&nbsp;タイ留学へ旅立つ愛美へ&nbsp;みんなからの応援メッセージ</span></a></h2>
     </header>
     <!-- /Header -->
     <!-- Left -->
