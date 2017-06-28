@@ -27,7 +27,8 @@ function slabTextHeadlines(){
 
     $(".slab, #rightContent .articleList .article a, div#rightContent div.catch").slabText({
         // Don't slabtext the headers if the viewport is under 480px
-        "viewportBreakpoint":480
+        "viewportBreakpoint":480,
+        "maxFontSize":90
     });
 
 }
