@@ -12,7 +12,6 @@ $(function() {
     deleteLink();
     goTop();
     infinitescroll();
-    sharrre_count();
 
 
 })
@@ -66,7 +65,7 @@ function infinitescroll(){
 
     $('#rightContent .articleList').infinitescroll({
         navSelector  : "#page-nav",
-        nextSelector : "#page-nav a:first",
+        nextSelector : "#page-nav .next a",
         itemSelector : "#rightContent .articleList .article"
     },function(arrayOfNewElems){
         $(".article a").slabText();
@@ -127,83 +126,3 @@ function goTop(){
 
 }
 
-
-//SNS
-function get_social_count(url, postid) {
-    $.ajax({
-        url      : 'https://graph.facebook.com/' + url,
-        dataType : 'jsonp',
-        success  : function(json){ $('#' + postid + ' .facebook .count').text( json.shares || 0 ); }
-    });
-    // $.ajax({
-    // 		url      : 'http://urls.api.twitter.com/1/urls/count.json?url=' + url,
-    // 		dataType : 'jsonp',
-    // 		success  : function(json){ $('#' + postid + ' .twitter .count').text( json.count || 0 ); }
-    // });
-    $.ajax({
-        url      : 'http://api.b.st-hatena.com/entry.count?url='+ url,
-        dataType : 'jsonp',
-        success  : function(json){ $('#' + postid + ' .hatena .count').text( json || 0 ); }
-    });
-    $.ajax({
-        cache: false,
-        type: "POST",
-        url: "https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ",
-        data: [{"method":"pos.plusones.get","id":"p","params":{"nolog":true,"id":"http://www.test.com","source":"widget","userId":"@viewer","groupId":"@self"},"jsonrpc":"2.0","key":"p","apiVersion":"v1"}],
-        dataType: "jsonp",
-        success  : function(json){ $('#' + postid + ' .google .count').text( json || 0 ); }
-    });
-}
-
-window.___gcfg = {lang: 'ja'};
-(function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
-
-
-
-//SNS
-function sharrre_count() {
-// $('#twitter').sharrre({
-//   share: {
-//     twitter: true
-//   },
-//   enableHover: false,
-//   enableTracking: true,
-//   click: function(api, options){
-//     api.simulateClick();
-//     api.openPopup('twitter');
-//   }
-// });
-    $('#facebook').sharrre({
-        share: {
-            facebook: true
-        },
-        enableHover: false,
-        enableTracking: true,
-        click: function(api, options){
-            api.simulateClick();
-            api.openPopup('facebook');
-        }
-    });
-    $('#googleplus').sharrre({
-        share: {
-            googlePlus: true
-        },
-        enableHover: false,
-        enableTracking: true,
-        click: function(api, options){
-            api.simulateClick();
-            api.openPopup('googlePlus');
-        }
-    });
-}
-
-
-
-//Category List
-$(function() {
-    $('div#rightContent .categoryName li a').prepend('<i></i>');
-})

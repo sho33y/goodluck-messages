@@ -20,6 +20,7 @@ class GoodlucksController extends AppController
      */
     public function index()
     {
+        $this->paginate['limit'] = 10;
         $goodlucks = $this->paginate($this->Goodlucks);
 
         $this->set(compact('goodlucks'));

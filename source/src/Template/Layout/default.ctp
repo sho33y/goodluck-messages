@@ -11,6 +11,7 @@
     <?= $this->Html->script('jquery-3.1.1.min.js') ?>
     <?= $this->Html->script('jquery.slabtext.js') ?>
     <?= $this->Html->script('infinite-scroll.pkgd.js') ?>
+    <?= $this->Html->script('common.js') ?>
     <?= $this->Html->css('import.css') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

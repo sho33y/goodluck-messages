@@ -13,7 +13,7 @@ body { height: 100%; width: 100%; text-align: left; color: #333; font-family:'�
 
 body.noscroll { overflow-y: hidden; }
 
-div#wrapper { width: 100%; position: relative; height:auto !important; /*IE6対策*/ height: 100%; /*IE6対策*/ min-height: 100%; background: url(../img/word.png) right top no-repeat fixed; }
+div#wrapper { width: 100%; position: relative; height:auto !important; /*IE6対策*/ height: 100%; /*IE6対策*/ min-height: 100%; }
 
 a { text-decoration: none; outline: 0;
     /*Transition*/

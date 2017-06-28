@@ -20,7 +20,6 @@ class GoodlucksController extends AdminController
      */
     public function index()
     {
-//        $this->paginate['limit'] = 1;
         $goodlucks = $this->paginate($this->Goodlucks);
 
         $this->set(compact('goodlucks'));
