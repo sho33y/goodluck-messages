@@ -106,7 +106,7 @@ div#rightContent aside { clear: both; margin-top: 40px; padding-top: 40px; backg
 
 /*Comment*/
 div#rightContent aside.why p.title { text-indent: -9999px; width: 162px; height: 10px; background: url(../img/parts.png) -280px 0 no-repeat; }
-div#rightContent aside.why p.comment { margin: 40px 20px 0; font-size: 14px; line-height: 200%; }
+div#rightContent aside.why p.comment { margin: 40px 20px 0; font-size: 16px; line-height: 200%; }
 
 /*Explore*/
 div#rightContent aside.explore p.title { text-indent: -9999px; width: 70px; height: 10px; background: url(../img/parts.png) -280px -20px no-repeat; }

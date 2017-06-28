@@ -28,11 +28,29 @@ class GoodlucksController extends AppController
     }
 
     /**
+     * View method
+     *
+     * @param string|null $id Goodluck id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function message($id = null)
+    {
+        $goodluck = $this->Goodlucks->get($id);
+
+//        debug($goodluck);
+//        exit();
+
+        $this->set('goodluck', $goodluck);
+        $this->set('_serialize', ['goodluck']);
+    }
+
+    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function form()
     {
         $goodluck = $this->Goodlucks->newEntity();
         if ($this->request->is('post')) {

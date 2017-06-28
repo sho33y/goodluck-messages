@@ -31,6 +31,13 @@ function slabTextHeadlines(){
         "maxFontSize":90
     });
 
+    $("div#rightContent div.catch").slabText({
+        // Don't slabtext the headers if the viewport is under 480px
+        "viewportBreakpoint":480,
+        "maxFontSize":55,
+        "precision":1.5
+    });
+
 }
 
 
