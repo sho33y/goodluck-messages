@@ -7,7 +7,15 @@ use RuntimeException;
 
 class ImageUploader
 {
-    public static function fileUpload ($file = null,$dir = null, $limitFileSize = 1024 * 1024){
+    /**
+     * 画像をアップロードする
+     *
+     * @param null $file
+     * @param null $dir
+     * @param int $limitFileSize
+     * @return string
+     */
+    public static function fileUpload ($file = null, $dir = null, $limitFileSize = 1024 * 1024) {
         try {
             // ファイルを保存するフォルダ $dirの値のチェック
             if ($dir){
@@ -72,4 +80,29 @@ class ImageUploader
         }
         return $uploadFile;
     }
+
+    /**
+     * 画像を削除する
+     *
+     * @param null $fileName
+     * @param null $dir
+     */
+    public static function fileDelete($fileName = null, $dir = null)
+    {
+        try {
+            $delFile = new File($dir .'/'. $fileName);
+            // ファイル削除処理実行
+            if($delFile->delete()) {
+                $result['file'] = '';
+                $result['error'] = '';
+            } else {
+                $result['file'] = $fileName;
+                $result['error'] = 'ファイルの削除ができませんでした';
+            }
+        } catch (RuntimeException $e){
+            $result['file'] = $fileName;
+            $result['error'] = $e->getMessage();
+        }
+    }
+
 }

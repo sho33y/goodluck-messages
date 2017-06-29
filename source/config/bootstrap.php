@@ -220,3 +220,8 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+/*
+ * customize config files
+ */
+require __DIR__ . '/const.php';
