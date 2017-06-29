@@ -1,44 +1,42 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Goodluck $goodluck
-  */
-?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <?php echo $this->element('admin_sidebar'); ?>
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Goodluck'), ['action' => 'edit', $goodluck->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Goodluck'), ['action' => 'delete', $goodluck->id], ['confirm' => __('Are you sure you want to delete # {0}?', $goodluck->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Goodlucks'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Goodluck'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('編集'), ['action' => 'edit', $goodluck->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('削除'), ['action' => 'delete', $goodluck->id], ['confirm' => __('本当に削除してもよろしいですか?', $goodluck->id)]) ?> </li>
     </ul>
 </nav>
 <div class="goodlucks view large-9 medium-8 columns content">
-    <h3><?= h($goodluck->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Nickname') ?></th>
-            <td><?= h($goodluck->nickname) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Title') ?></th>
-            <td><?= h($goodluck->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
+            <th scope="row"><?= __('ID') ?></th>
             <td><?= $this->Number->format($goodluck->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
+            <th scope="row"><?= __('ニックネーム') ?></th>
+            <td><?= h($goodluck->nickname) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('タイトル') ?></th>
+            <td><?= h($goodluck->title) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('登録日時') ?></th>
             <td><?= h($goodluck->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
+            <th scope="row"><?= __('更新日時') ?></th>
             <td><?= h($goodluck->modified) ?></td>
         </tr>
     </table>
     <div class="row">
-        <h4><?= __('Message') ?></h4>
+        <h4><?= __('メッセージ') ?></h4>
         <?= $this->Text->autoParagraph(h($goodluck->message)); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('画像') ?></h4>
+        <?php if ($goodluck->image_name): ?>
+            <img src="<?php echo $this->Url->build('/img/uploads/', true) . $goodluck->image_name; ?>">
+        <?php endif; ?>
     </div>
 </div>

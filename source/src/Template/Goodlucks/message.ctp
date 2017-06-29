@@ -23,6 +23,11 @@
             <aside class="why">
                 <p class="comment"><?php echo nl2br($goodluck->message) ?></p>
             </aside>
+            <?php if ($goodluck->image_name): ?>
+                <aside class="message-img">
+                    <img src="<?php echo $this->Url->build('/img/uploads/', true) . $goodluck->image_name; ?>" alt="">
+                </aside>
+            <?php endif; ?>
             <!-- /Wonderful -->
         </article>
         <!-- /Article -->
