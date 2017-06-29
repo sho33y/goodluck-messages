@@ -11,6 +11,7 @@ source/tmp/cache/persistent/*
 source/tmp/cache/views/*
 source/tmp/sessions/*
 source/logs/*
+source/webroot/img/uploads/
 
 
 !.gitkeep
