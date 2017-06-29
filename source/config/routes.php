@@ -57,6 +57,10 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'Goodlucks', 'action' => 'index'],
         ['_name' => 'home']
     );
+    $routes->connect('/form',
+        ['controller' => 'Goodlucks', 'action' => 'form'],
+        ['_name' => 'form']
+    );
 
     $routes->fallbacks(DashedRoute::class);
 });

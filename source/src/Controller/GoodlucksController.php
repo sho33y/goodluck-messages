@@ -53,11 +53,11 @@ class GoodlucksController extends AppController
         if ($this->request->is('post')) {
             $goodluck = $this->Goodlucks->patchEntity($goodluck, $this->request->getData());
             if ($this->Goodlucks->save($goodluck)) {
-                $this->Flash->success(__('The goodluck has been saved.'));
+                $this->Flash->success(__('登録しました。'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'form']);
             }
-            $this->Flash->error(__('The goodluck could not be saved. Please, try again.'));
+            $this->Flash->error(__('登録できませんでした。お手数ですがもう一度お試しください。'));
         }
         $this->set(compact('goodluck'));
         $this->set('_serialize', ['goodluck']);

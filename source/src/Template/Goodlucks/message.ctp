@@ -1,4 +1,4 @@
-<?= $this->start('script'); ?>
+<?= $this->start('css'); ?>
 <?= $this->Html->css('import'); ?>
 <?= $this->end(); ?>
 <?= $this->assign('wrapper_class', 'single single-post single-format-standard slabtexted'); ?>
