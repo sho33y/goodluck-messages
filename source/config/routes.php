@@ -57,6 +57,10 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'Goodlucks', 'action' => 'index'],
         ['_name' => 'home']
     );
+    $routes->connect('/message/:id',
+        ['controller' => 'Goodlucks', 'action' => 'message'],
+        ['id' => '[0-9]+', 'pass' => ['id']]
+    );
     $routes->connect('/form',
         ['controller' => 'Goodlucks', 'action' => 'form'],
         ['_name' => 'form']

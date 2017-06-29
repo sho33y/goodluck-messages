@@ -1,7 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
+use App\Controller\Component\ImageUploader;
+use RuntimeException;
 
 /**
  * Goodlucks Controller
@@ -52,6 +53,16 @@ class GoodlucksController extends AppController
         $goodluck = $this->Goodlucks->newEntity();
         if ($this->request->is('post')) {
             $goodluck = $this->Goodlucks->patchEntity($goodluck, $this->request->getData());
+
+            $dir = realpath(WWW_ROOT . "img/uploads");
+            $limitFileSize = 1024 * 1024;
+            try {
+                $goodluck['image_name'] = ImageUploader::fileUpload($this->request->getData('image'), $dir, $limitFileSize);
+            } catch (RuntimeException $e){
+                $this->Flash->error(__('ファイルのアップロードができませんでした.'));
+                $this->Flash->error(__($e->getMessage()));
+            }
+
             if ($this->Goodlucks->save($goodluck)) {
                 $this->Flash->success(__('登録しました。'));
 

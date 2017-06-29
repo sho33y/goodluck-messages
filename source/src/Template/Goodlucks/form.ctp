@@ -20,7 +20,7 @@
     <main id="main">
         <div class="inner">
             <div class="form-wrapper">
-                <?= $this->Form->create($goodluck, ['class' => 'form-style01']) ?>
+                <?= $this->Form->create($goodluck, ['class' => 'form-style01', 'enctype' => 'multipart/form-data']) ?>
                 <!-- エラーメッセージのテンプレート変更 -->
                 <?php $this->Form->templates(['error' => '<p>{{content}}</p>']); ?>
                 <table class="table01">
@@ -46,6 +46,13 @@
                         <td>
                             <?php echo $this->Form->textarea('message', ['cols' => 30, 'rows' => 10]); ?>
                         </td>
+                    </tr>
+                    <tr>
+                        <th><label for="image">画像</label></th>
+                        <td class="message">
+                            <?php if ($this->Form->isFieldError('image')){ echo $this->Form->error('image'); } ?>
+                        </td>
+                        <td><?php echo $this->Form->file('image', ['id' => 'image']); ?></td>
                     </tr>
                 </table>
                 <!-- /.table01 -->

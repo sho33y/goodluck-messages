@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  * @property string $nickname
  * @property string $title
  * @property string $message
+ * @property string $image_name
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */

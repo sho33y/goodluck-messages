@@ -60,6 +60,9 @@ class GoodlucksTable extends Table
         $validator
             ->allowEmpty('message');
 
+        $validator
+            ->allowEmpty('image_name');
+
         return $validator;
     }
 }
