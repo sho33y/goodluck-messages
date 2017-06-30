@@ -15,7 +15,8 @@ class ImageUploader
      * @param int $limitFileSize
      * @return string
      */
-    public static function fileUpload ($file = null, $dir = null, $limitFileSize = 1024 * 1024) {
+    public function fileUpload ($file = null, $dir = SAVE_IMG_PATH, $limitFileSize = 1024 * 1024)
+    {
         try {
             // ファイルを保存するフォルダ $dirの値のチェック
             if ($dir){
@@ -49,11 +50,6 @@ class ImageUploader
             // ファイル情報取得
             $fileInfo = new File($file["tmp_name"]);
 
-            // ファイルサイズのチェック
-            if ($fileInfo->size() > $limitFileSize) {
-                throw new RuntimeException('ファイルサイズが大きすぎます。');
-            }
-
             // ファイルタイプのチェックし、拡張子を取得
             if (false === $ext = array_search($fileInfo->mime(),
                     ['jpg' => 'image/jpeg',
@@ -65,10 +61,17 @@ class ImageUploader
 
             // ファイル名の生成
 //            $uploadFile = $file["name"] . "." . $ext;
-            $uploadFile = sha1_file($file["tmp_name"]) . "." . $ext;
+            $uploadFile = date('YmdHis').sha1_file($file['tmp_name']).'.'. $ext;
+
+            // ファイルサイズのチェック
+            if ($fileInfo->size() > $limitFileSize) {
+                $this->resizeImageUpload($file, RESIZE_IMG_WIDTH, $dir, $uploadFile);
+                return $uploadFile;
+//                throw new RuntimeException('ファイルサイズが大きすぎます。');
+            }
 
             // ファイルの移動
-            if (!@move_uploaded_file($file["tmp_name"], $dir . "/" . $uploadFile)){
+            if (!@move_uploaded_file($file["tmp_name"], $dir . '/' . $uploadFile)){
                 throw new RuntimeException('ファイルのアップロードに失敗しました。');
             }
 
@@ -87,7 +90,7 @@ class ImageUploader
      * @param null $fileName
      * @param null $dir
      */
-    public static function fileDelete($fileName = null, $dir = null)
+    public function fileDelete($fileName = null, $dir = SAVE_IMG_PATH)
     {
         try {
             $delFile = new File($dir .'/'. $fileName);
@@ -103,6 +106,51 @@ class ImageUploader
             $result['file'] = $fileName;
             $result['error'] = $e->getMessage();
         }
+    }
+
+    /**
+     * 画像をリサイズしてアップロードする
+     *
+     * @param $file
+     * @param $newWidth
+     * @param string $dir
+     * @param $fileName
+     */
+    public function resizeImageUpload($file, $newWidth, $dir = SAVE_IMG_PATH, $fileName)
+    {
+        list($width, $height, $type) = getimagesize($file['tmp_name']);
+        $newHeight = round($height * $newWidth / $width);
+        $empImg = imagecreatetruecolor($newWidth, $newHeight);
+        switch($type){
+            case IMAGETYPE_JPEG:
+                $newImage = imagecreatefromjpeg($file['tmp_name']);
+                break;
+            case IMAGETYPE_GIF:
+                $newImage = imagecreatefromgif($file['tmp_name']);
+                break;
+            case IMAGETYPE_PNG:
+                imagealphablending($empImg, false);
+                imagesavealpha($empImg, true);
+                $newImage = imagecreatefrompng($file['tmp_name']);
+                break;
+        }
+        imagecopyresampled($empImg, $newImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        switch($type){
+            case IMAGETYPE_JPEG:
+                imagejpeg($empImg, $dir.'/'.$fileName);
+                break;
+            case IMAGETYPE_GIF:
+                $bgcolor = imagecolorallocatealpha($newImage, 0, 0, 0 , 127);
+                imagefill($empImg, 0, 0, $bgcolor);
+                imagecolortransparent($empImg, $bgcolor);
+                imagegif($empImg, $dir.'/'.$fileName);
+                break;
+            case IMAGETYPE_PNG:
+                imagepng($empImg, $dir.'/'.$fileName);
+                break;
+        }
+        imagedestroy($empImg);
+        imagedestroy($newImage);
     }
 
 }

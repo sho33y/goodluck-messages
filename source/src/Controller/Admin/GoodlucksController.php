@@ -52,11 +52,12 @@ class GoodlucksController extends AdminController
     public function add()
     {
         $goodluck = $this->Goodlucks->newEntity();
+        $imageUploader = new ImageUploader();
         if ($this->request->is('post')) {
             $goodluck = $this->Goodlucks->patchEntity($goodluck, $this->request->getData());
 
             try {
-                $goodluck['image_name'] = ImageUploader::fileUpload($this->request->getData('image'), SAVE_IMG_PATH, IMG_SIZE_MAX);
+                $goodluck['image_name'] = $imageUploader->fileUpload($this->request->getData('image'), SAVE_IMG_PATH, IMG_SIZE_MAX);
             } catch (RuntimeException $e){
                 $this->Flash->error(__('ファイルのアップロードができませんでした.'));
                 $this->Flash->error(__($e->getMessage()));
@@ -116,9 +117,10 @@ class GoodlucksController extends AdminController
      */
     private function editImage($request, $goodluck)
     {
+        $imageUploader = new ImageUploader();
         // deleteボタンがクリックされたとき
         if (isset($request['file_delete'])) {
-            $delResult = ImageUploader::fileDelete($request['file_before'], SAVE_IMG_PATH);
+            $delResult = $imageUploader->fileDelete($request['file_before'], SAVE_IMG_PATH);
             $goodluck['image_name'] = $delResult['file'];
             if ($delResult['error']) {
                 throw new RuntimeException($delResult['error']);
@@ -127,12 +129,12 @@ class GoodlucksController extends AdminController
             // ファイルが入力されたとき
             if ($request['image']['name']){
                 try {
-                    $goodluck['image_name'] = ImageUploader::fileUpload($request['image'], SAVE_IMG_PATH, IMG_SIZE_MAX);
+                    $goodluck['image_name'] = $imageUploader->fileUpload($request['image'], SAVE_IMG_PATH, IMG_SIZE_MAX);
                     // ファイル更新の場合は古いファイルは削除
                     if (isset($request['file_before'])) {
                         // ファイル名が同じ場合は削除を実行しない
                         if ($request['file_before'] != $goodluck['image_name']) {
-                            $delResult = ImageUploader::fileDelete($request['file_before'], SAVE_IMG_PATH);
+                            $delResult = $imageUploader->fileDelete($request['file_before'], SAVE_IMG_PATH);
                             if($delResult['error']) {
                                 $this->log("ファイル更新時に下記ファイルが削除できませんでした。", LOG_DEBUG);
                                 $this->log($request['file_before'], LOG_DEBUG);

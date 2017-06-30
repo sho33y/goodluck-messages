@@ -51,13 +51,12 @@ class GoodlucksController extends AppController
     public function form()
     {
         $goodluck = $this->Goodlucks->newEntity();
+        $imageUploader = new ImageUploader();
         if ($this->request->is('post')) {
             $goodluck = $this->Goodlucks->patchEntity($goodluck, $this->request->getData());
 
-            $dir = realpath(WWW_ROOT . "img/uploads");
-            $limitFileSize = 1024 * 1024;
             try {
-                $goodluck['image_name'] = ImageUploader::fileUpload($this->request->getData('image'), $dir, $limitFileSize);
+                $goodluck['image_name'] = $imageUploader->fileUpload($this->request->getData('image'), SAVE_IMG_PATH, IMG_SIZE_MAX);
             } catch (RuntimeException $e){
                 $this->Flash->error(__('ファイルのアップロードができませんでした.'));
                 $this->Flash->error(__($e->getMessage()));

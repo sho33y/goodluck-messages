@@ -44,7 +44,7 @@
                             <?php if ($this->Form->isFieldError('message')){ echo $this->Form->error('message'); } ?>
                         </td>
                         <td>
-                            <?php echo $this->Form->textarea('message', ['cols' => 30, 'rows' => 10]); ?>
+                            <?php echo $this->Form->textarea('message', ['cols' => 30, 'rows' => 30]); ?>
                         </td>
                     </tr>
                     <tr>
