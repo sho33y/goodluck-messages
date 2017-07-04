@@ -52,13 +52,13 @@ class GoodlucksTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('nickname');
+            ->notEmpty('nickname', 'ニックネームを入力してください。');
 
         $validator
-            ->allowEmpty('title');
+            ->notEmpty('title', 'タイトルを入力してください。');
 
         $validator
-            ->allowEmpty('message');
+            ->notEmpty('message', 'メッセージを入力してください。');
 
         $validator
             ->allowEmpty('image_name');
