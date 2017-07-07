@@ -63,6 +63,9 @@ class GoodlucksController extends AppController
                         $this->request->session()->write('form', $goodluck);
                         $this->set(compact('goodluck'));
                         $this->render('confirm');
+                    } else {
+                        $this->set(compact('goodluck'));
+                        $this->render('input');
                     }
                     break;
                 // 戻るボタン
@@ -78,11 +81,23 @@ class GoodlucksController extends AppController
                          return $this->redirect(['_name' => 'home']);
                     }
                     if ($this->Goodlucks->save($goodluck)) {
-                        $this->Flash->success(__('登録しました。'));
                         $this->request->session()->delete('form');
                          $this->render('complete');
+                    } else {
+                        $this->Flash->error(__('登録できませんでした。お手数ですがもう一度お試しください。'));
+                        $this->set(compact('goodluck'));
+                        $this->render('input');
                     }
-                    $this->Flash->error(__('登録できませんでした。お手数ですがもう一度お試しください。'));
+                    break;
+                case 'img_delete':
+                    $goodluck = $this->Goodlucks->patchEntity($goodluck, $this->request->getData());
+                    $goodluck = $this->setImage($this->request->getData(), $goodluck);
+                    $this->set(compact('goodluck'));
+                    $this->render('input');
+                    break;
+                default:
+                    $this->set(compact('goodluck'));
+                    $this->render('input');
                     break;
             }
         }
@@ -102,33 +117,42 @@ class GoodlucksController extends AppController
     private function setImage($request, $goodluck)
     {
         $imageUploader = new ImageUploader();
-        // ファイルが入力されたとき
-        if ($request['image']['name']){
-            try {
-                $goodluck['image_name'] = $imageUploader->fileUpload($request['image'], SAVE_IMG_PATH, IMG_SIZE_MAX);
-                // ファイル更新の場合は古いファイルは削除
-                if (isset($request['file_before'])) {
-                    // ファイル名が同じ場合は削除を実行しない
-                    if ($request['file_before'] != $goodluck['image_name']) {
-                        $delResult = $imageUploader->fileDelete($request['file_before'], SAVE_IMG_PATH);
-                        if($delResult['error']) {
-                            $this->log("ファイル更新時に下記ファイルが削除できませんでした。", LOG_DEBUG);
-                            $this->log($request['file_before'], LOG_DEBUG);
-                        }
-                    }
-                }
-            } catch (RuntimeException $e){
-                // アップロード失敗の時、既登録ファイルがある場合はそれを保持
-                if (isset($request['file_before'])){
-                    $goodluck['image_name'] = $request['file_before'];
-                }
-                $this->Flash->error(__('ファイルのアップロードができませんでした.'));
-                $this->Flash->error(__($e->getMessage()));
+        // 画像取り消しボタンがクリックされたとき
+        if (isset($request['mode']) && $request['mode'] == 'img_delete') {
+            $delResult = $imageUploader->fileDelete($request['file_before'], SAVE_IMG_PATH);
+            $goodluck['image_name'] = $delResult['file'];
+            if ($delResult['error']) {
+                throw new RuntimeException($delResult['error']);
             }
         } else {
-            // ファイルは入力されていないけど登録されているファイルがあるとき
-            if (isset($request['file_before'])){
-                $goodluck['image_name'] = $request['file_before'];
+            // ファイルが入力されたとき
+            if ($request['image']['name']) {
+                try {
+                    $goodluck['image_name'] = $imageUploader->fileUpload($request['image'], SAVE_IMG_PATH, IMG_SIZE_MAX);
+                    // ファイル更新の場合は古いファイルは削除
+                    if (isset($request['file_before'])) {
+                        // ファイル名が同じ場合は削除を実行しない
+                        if ($request['file_before'] != $goodluck['image_name']) {
+                            $delResult = $imageUploader->fileDelete($request['file_before'], SAVE_IMG_PATH);
+                            if ($delResult['error']) {
+                                $this->log("ファイル更新時に下記ファイルが削除できませんでした。", LOG_DEBUG);
+                                $this->log($request['file_before'], LOG_DEBUG);
+                            }
+                        }
+                    }
+                } catch (RuntimeException $e) {
+                    // アップロード失敗の時、既登録ファイルがある場合はそれを保持
+                    if (isset($request['file_before'])) {
+                        $goodluck['image_name'] = $request['file_before'];
+                    }
+                    $this->Flash->error(__('ファイルのアップロードができませんでした.'));
+                    $this->Flash->error(__($e->getMessage()));
+                }
+            } else {
+                // ファイルは入力されていないけど登録されているファイルがあるとき
+                if (isset($request['file_before'])) {
+                    $goodluck['image_name'] = $request['file_before'];
+                }
             }
         }
 

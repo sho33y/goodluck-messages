@@ -8,9 +8,10 @@
         <div class="inner">
             <div class="form-wrapper">
                 <div class="thanks-message">
-                    送信完了ページ
+                    <p>メッセージを送信完了しました。</p>
+                    <p>ご協力頂きありがとうございました。</p>
+                    <p>送信したメッセージは<?= $this->Html->link(__('こちら'), ['_name' => 'home']) ?>からご確認いただけます。</p>
                 </div>
-                <?= $this->Html->link('メッセージ一覧へ', ['_name' => 'home']) ?>
             </div>
             <!-- /.form-wrapper -->
         </div>

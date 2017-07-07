@@ -6,7 +6,7 @@
 <div id="wrapper">
     <!-- Header -->
     <header>
-        <h2 class="copy"><a href="/">Good luck Manami.&nbsp;<span class="info">|&nbsp;タイ留学へ旅立つ愛美へ&nbsp;みんなからの応援メッセージ</span></a></h2>
+        <h2 class="copy"><a href="/">Good luck Manami.&nbsp;|&nbsp;タイ留学へ旅立つ愛美へ&nbsp;みんなからの応援メッセージ</a></h2>
     </header>
     <!-- /Header -->
     <!-- Left -->

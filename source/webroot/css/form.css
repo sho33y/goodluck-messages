@@ -98,7 +98,7 @@ html, body { height: 100%; }
 
 .inner { margin: 0 auto; width: 90%; }
 
-.note-area { font-size: 14px; font-size: 0.875rem; margin: 1em 0; }
+.note-area { font-size: 14px; font-size: 0.875rem; width: 90%; margin: 1em auto 4em; }
 
 .note-area a { color: #02B875; position: relative; display: inline-block; text-decoration: none; transition: all .5s ease; }
 
@@ -108,9 +108,12 @@ html, body { height: 100%; }
 
 .note-area a:hover { opacity: .6; }
 
-.note-area .attention { margin-bottom: 2em; }
+.note-area .attention { margin: 2em 0; padding-left: 20px;}
 
 .note-area .checkbox { text-align: center; }
+
+.note-area ul { list-style: disc;}
+
 
 /*** Footer ***/
 /*** Header ***/

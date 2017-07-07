@@ -78,7 +78,7 @@ div#rightContent ul.articleList { clear: both; padding: 0; margin: 0; }
 /*List*/
 div#rightContent li { list-style: none; display: block; padding: 30px 0; margin: 0; font-size: 1em; line-height: auto; }
 div#rightContent li a { display: block; font-size: 24px; white-space: nowrap; line-height: 1; }
-div#rightContent li aside.detail { display: block; text-align: right; color: #999; font-size: 12px; background: none; margin: 0; padding-top: 20px; }
+div#rightContent li aside.detail { display: block; text-align: right; color: #999; font-size: 14px; background: none; margin: 0; padding-top: 20px; }
 
 /*Desc*/
 div#rightContent article { clear: both; margin-top: 10px; }
@@ -86,7 +86,7 @@ div#rightContent article h1.caption a { font-size: 10px; line-height: 2; color: 
 div#rightContent article h1.caption a i { display: inline-block; width: 7px; height: 7px; margin-right: 5px; background: url(../img/parts.png) -120px 0 no-repeat; }
 div#rightContent article div.catch { margin-top: 50px; padding: 0 10px; font-size: 24px; line-height: auto; white-space: nowrap; }
 div#rightContent article div.body { margin-top: 50px; padding: 0 10px; font-size: 16px; line-height: 250%; text-align: center; }
-div#rightContent article p.source { margin-top: 100px; padding: 0 10px; font-size: 11px; line-height: 150%; text-align: right; }
+div#rightContent article p.source { margin-top: 70px; padding: 0 50px; font-size: 16px; line-height: 150%; text-align: right; }
 div#rightContent article img,
 div#rightContent article iframe { display: block; margin: 0 auto; }
 

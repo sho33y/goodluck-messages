@@ -62,9 +62,9 @@
                     </tr>
                 </table>
                 <!-- /.table01 -->
-                <div class="note-area">
+                <div class="note-area" style="text-align: center; margin-bottom: 10px;">
                     <div class="attention">
-                        <p>ここに注意書きが入ります。</p>
+                        <p>上記内容をご確認し、よければ送信するボタンを押してください。</p>
                     </div>
                 </div>
                 <!-- /.note-area -->

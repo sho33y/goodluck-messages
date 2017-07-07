@@ -4,12 +4,13 @@
 <?= $this->start('script'); ?>
 <script type="text/javascript">
     var sent = false;
-    function fnCheckSubmit(form) {
+    function fnCheckSubmit(form, mode) {
         if (sent) {
             alert("只今、処理中です。しばらくお待ち下さい。");
             return false;
         }
         sent = true;
+        form.mode.value = mode;
         form.submit();
     }
 </script>
@@ -20,6 +21,20 @@
     <main id="main">
         <div class="inner">
             <div class="form-wrapper">
+                <div class="note-area">
+                    <p>「タイ留学へ旅立つ愛美への応援メッセージ」にご協力頂きありがとうございます。</p>
+                    <p>以下の説明をお読みになり必要項目を入力してください。</p>
+                    <p>メッセージがどのように表示されるかは<?= $this->Html->link(__('こちら'), ['_name' => 'home'], ['target' => '_blank']) ?>からご確認いただけます。</p>
+                    <div class="attention">
+                        <ul>
+                            <li>もし思い出の写真などがあればぜひメッセージに添付してください。</li>
+                            <li>画像の変更をしたい時は再度ファイルを選択するボタンを押すことで変更できます。</li>
+                            <li>絵文字は使用することができません。</li>
+                            <li>一度送信した投稿は自分で変更することはできません。もし変更したい場合は<a href="mailto:kidsdream226@gmail.com?subject=goodluck-manamiについて">こちらへ</a>ご連絡ください。</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.note-area -->
                 <?= $this->Form->create($goodluck, ['class' => 'form-style01', 'enctype' => 'multipart/form-data']) ?>
                 <?php echo $this->Form->hidden('mode', ['value' => 'confirm']); ?>
                 <!-- エラーメッセージのテンプレート変更 -->
@@ -57,6 +72,7 @@
                             <td>
                                 <img src="<?php echo $this->Url->build('/img/uploads/', true) . $goodluck->image_name; ?>" style="max-width: 100%;">
                                 <?php echo $this->Form->input('file_before', ['type' => 'hidden', 'value' => $goodluck->image_name]); ?>
+                                <?php echo $this->Form->input('画像取り消し' , ['type' => 'submit', 'name' => 'file_delete', 'value' => 'delete', 'onclick' => "fnCheckSubmit(this.form, 'img_delete'); return false;"]); ?>
                             </td>
                         <?php endif; ?>
                         <td>
@@ -65,17 +81,11 @@
                     </tr>
                 </table>
                 <!-- /.table01 -->
-                <div class="note-area">
-                    <div class="attention">
-                        <p>ここに注意書きが入ります。</p>
-                    </div>
-                </div>
-                <!-- /.note-area -->
                 <?= $this->Form->button(__('確認画面へ'), [
                     'type' => 'button',
                     'class' => 'submit-button',
                     'templates' => ['submitContainer' => '{{content}}'],
-                    'onclick' => "fnCheckSubmit(this.form); return false;",
+                    'onclick' => "fnCheckSubmit(this.form, 'confirm'); return false;",
                     'label' => false,
                 ]) ?>
                 <?= $this->Form->end() ?>

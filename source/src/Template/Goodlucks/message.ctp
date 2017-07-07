@@ -19,6 +19,7 @@
         <!-- Article -->
         <article>
             <div class="catch"><span class="slabtext"><?= $goodluck->title ?></span></div>
+            <p class="source"><?= $goodluck->nickname ?></p>
             <!-- Wonderful -->
             <aside class="why">
                 <p class="comment"><?php echo nl2br($goodluck->message) ?></p>
