@@ -48,6 +48,7 @@ div#rightContent article p.source { text-align: right; margin-top: 30px; }
 div#rightContent article img { max-width: 100%!important; height: auto; }
 
 /*Explore*/
+div#rightContent aside { margin-top: 0; }
 div#rightContent aside.explore div.box { margin-top: 20px; width: 100%; float: none; }
 div#rightContent aside.explore div.box div.img { min-height: inherit; background: none; }
 div#rightContent aside.explore div.box div.copy { padding: 10px 20px 20px; background: url(../img/line.gif) left bottom repeat-x; }
