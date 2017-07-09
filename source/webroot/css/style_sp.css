@@ -44,7 +44,7 @@ div#rightContent li a .slabtext { font-size: 1em!important; letter-spacing: 0!im
 div#rightContent li aside.detail { padding-top: 10px; font-size: 10px; }
 
 div#rightContent article div.catch { white-space: normal; line-height: 1.5; }
-div#rightContent article p.source { text-align: left; }
+div#rightContent article p.source { text-align: right; margin-top: 30px; }
 div#rightContent article img { max-width: 100%!important; height: auto; }
 
 /*Explore*/
