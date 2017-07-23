@@ -28,7 +28,7 @@ function slabTextHeadlines(){
     $(".slab, #rightContent .articleList .article a, div#rightContent div.catch").slabText({
         // Don't slabtext the headers if the viewport is under 480px
         "viewportBreakpoint":480,
-        "maxFontSize":90
+        "maxFontSize":65
     });
 
     $("div#rightContent div.catch").slabText({
@@ -76,7 +76,11 @@ function infinitescroll(){
         nextSelector : "#page-nav .next a",
         itemSelector : "#rightContent .articleList .article"
     },function(arrayOfNewElems){
-        $(".article a").slabText();
+        $(".article a").slabText({
+            // Don't slabtext the headers if the viewport is under 480px
+            "viewportBreakpoint":480,
+            "maxFontSize":65
+        });
     });
 
 }
