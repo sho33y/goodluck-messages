@@ -428,7 +428,7 @@
           newElWidth = Math.floor((wrapWidth + slider.settings.slideMargin) / (Math.ceil((wrapWidth + slider.settings.slideMargin) / (newElWidth + slider.settings.slideMargin))) - slider.settings.slideMargin);
         }
       }
-      return newElWidth;
+      return newElWidth + 10;
     };
 
     /**
