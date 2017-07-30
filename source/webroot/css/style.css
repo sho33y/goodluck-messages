@@ -72,8 +72,9 @@ div#leftContent nav ul#nav li.rss a { background-position: -160px -104px; }
 
 /* ------------ RightContent ------------ */
 
-div#rightContent { opacity: 0; width: auto; height: 100%; min-height:100%; min-width: 500px; padding: 50px 120px; text-align: center; margin: 0 auto; overflow: hidden; }
+div#rightContent { opacity: 0; width: auto; height: 100%; min-height:100%; min-width: 500px; padding: 50px 120px; margin: 0 auto; overflow: hidden; }
 div#rightContent ul.articleList { clear: both; padding: 0; margin: 0; }
+.home div#rightContent { text-align: center; }
 
 /*List*/
 div#rightContent li { list-style: none; display: block; padding: 30px 0; margin: 0; font-size: 1em; line-height: auto; }
@@ -160,3 +161,11 @@ footer p.copyright a.share.gp:hover { color: #df7a6d; }
 
 /* ------------ bxSlider ------------ */
 div.slider-area { width: 70%; text-align: center; margin: 0 auto; padding-top: 90px; }
+
+
+
+
+
+
+
+
