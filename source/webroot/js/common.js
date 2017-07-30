@@ -146,8 +146,7 @@ function bxSlider() {
             speed: 1000,
             controls: false,
             pause: 5000,
-            auto: true,
-            slideMargin: 20
+            auto: true
         });
     });
 }
