@@ -24,8 +24,10 @@ class GoodlucksController extends AppController
         $this->paginate['limit'] = 10;
         $goodlucks = $this->paginate($this->Goodlucks);
 
-        $this->set(compact('goodlucks'));
-        $this->set('_serialize', ['goodlucks']);
+        $sliderNums = range(1,35);
+        shuffle($sliderNums);
+
+        $this->set(compact('goodlucks', 'sliderNums'));
     }
 
     /**

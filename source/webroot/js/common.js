@@ -12,6 +12,7 @@ $(function() {
     deleteLink();
     goTop();
     infinitescroll();
+    bxSlider();
 
 
 })
@@ -136,5 +137,17 @@ function goTop(){
         });
     });
 
+}
+
+// bxSlider
+function bxSlider() {
+    $(document).ready(function(){
+        $('.bxslider').bxSlider({
+            speed: 1000,
+            controls: false,
+            pause: 5000,
+            auto: true
+        });
+    });
 }
 
