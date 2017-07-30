@@ -132,4 +132,4 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 /* ------------ bxSlider ------------ */
-div.slider-area { width: 100%; }
+div.slider-area { width: 100%; padding-top: 30px;}
